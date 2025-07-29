@@ -1,4 +1,4 @@
-package ai.nova.nex.server.service;
+package ai.nova.nex.server.service.system;
 
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 

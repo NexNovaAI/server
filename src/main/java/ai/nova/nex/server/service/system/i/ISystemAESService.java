@@ -1,13 +1,12 @@
-package ai.nova.nex.server.service.i;
+package ai.nova.nex.server.service.system.i;
 
 import ai.nova.nex.server.config.properties.SystemProperties;
-import ai.nova.nex.server.service.SystemAESService;
+import ai.nova.nex.server.service.system.SystemAESService;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import cn.hutool.extra.spring.SpringUtil;
-import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
