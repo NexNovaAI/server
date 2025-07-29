@@ -150,7 +150,7 @@
             <version>${druid.version}</version>
         </dependency>
 
-        <!-- 综合验证码 -->
+        <!-- 综合验证码 http://doc.captcha.tianai.cloud/ -->
         <dependency>
             <groupId>cloud.tianai.captcha</groupId>
             <artifactId>tianai-captcha-springboot-starter</artifactId>
