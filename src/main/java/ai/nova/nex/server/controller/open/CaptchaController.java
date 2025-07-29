@@ -7,6 +7,7 @@ import cloud.tianai.captcha.common.constant.CaptchaTypeConstant;
 import cloud.tianai.captcha.common.response.ApiResponse;
 import cloud.tianai.captcha.spring.plugins.secondary.SecondaryVerificationApplication;
 import cloud.tianai.captcha.validator.common.model.dto.ImageCaptchaTrack;
+import cn.dev33.satoken.annotation.SaIgnore;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @RequestMapping("/open/captcha")
 @RestController
 @Slf4j
+@SaIgnore
 public class CaptchaController {
 
     @lombok.Data
