@@ -48,3 +48,6 @@ spring:
       test-on-return: false
       # 是否对空闲连接进行定期有效性验证
       test-while-idle: true
+system:
+  # AES加密密钥在单元测试中生成
+  aes-secret: dETkH0jmMByH8lxNjtQQhg==
