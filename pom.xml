@@ -25,6 +25,7 @@
         <mysql.version>8.4.0</mysql.version>
         <druid.version>1.2.27</druid.version>
         <mybatis-plus.version>3.5.12</mybatis-plus.version>
+        <tianai-captcha.version>1.5.2</tianai-captcha.version>
     </properties>
 
     <dependencies>
@@ -147,6 +148,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid.version}</version>
+        </dependency>
+
+        <!-- 综合验证码 -->
+        <dependency>
+            <groupId>cloud.tianai.captcha</groupId>
+            <artifactId>tianai-captcha-springboot-starter</artifactId>
+            <version>${tianai-captcha.version}</version>
         </dependency>
 
         <!-- 注解 -->
