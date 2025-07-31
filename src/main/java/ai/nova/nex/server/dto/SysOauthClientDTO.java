@@ -1,0 +1,31 @@
+package ai.nova.nex.server.dto;
+
+import ai.nova.nex.server.config.base.SuperEntity;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.Fastjson2TypeHandler;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+import java.util.List;
+
+/**
+ * @author 小正
+ * @date 2025年07月31日 16:42
+ * @Description 请填写此类描述
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@TableName(value = "sys_oauth_client", autoResultMap = true)
+@Accessors(chain = true)
+public class SysOauthClientDTO extends SuperEntity<SysOauthClientDTO> {
+    public String clientSecret;
+    public String clientName;
+    public String redirectUri;
+    @TableField(typeHandler = Fastjson2TypeHandler.class)
+    public List<String> grantTypes;
+    @TableField(typeHandler = Fastjson2TypeHandler.class)
+    public List<String> scope;
+    public Long uid;
+}

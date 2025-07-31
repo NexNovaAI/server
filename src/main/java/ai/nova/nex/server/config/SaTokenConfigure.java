@@ -7,6 +7,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -26,9 +27,17 @@ public class SaTokenConfigure implements WebMvcConfigurer {
             SaRouter.match("/**").check(r -> {
                 // 打印请求路径请求头请求参数
                 log.info("请求路径: {}, 请求方式: {}, 请求参数: {}", SaHolder.getRequest().getRequestPath(), SaHolder.getRequest().getMethod(), SaHolder.getRequest().getParamMap());
-            });
+                });
             // 指定一条 match 规则
-            SaRouter.match("/**").check(r -> StpUtil.checkLogin());
-        })).addPathPatterns("/**");
+            SaRouter.match("/**")
+                    .notMatch("/open/**")
+                    .check(r -> StpUtil.checkLogin());
+            })).addPathPatterns("/**");
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // 确保没有将/api/**映射到静态资源
+        registry.addResourceHandler("/static/**"); // 只处理特定路径
     }
 }

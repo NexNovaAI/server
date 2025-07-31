@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/open/oauth")
 @RestController
 @Slf4j
-@SaIgnore
 public class OAuthController {
     // 模式一：Code授权码 || 模式二：隐藏式
     @RequestMapping("/authorize")

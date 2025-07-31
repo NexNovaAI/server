@@ -3,6 +3,7 @@ package ai.nova.nex.server.exception;
 
 
 import ai.nova.nex.server.config.base.Result;
+import cn.dev33.satoken.exception.SaTokenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.nio.file.AccessDeniedException;
 import java.sql.SQLException;
@@ -100,6 +102,19 @@ public class DefaultExceptionAdvice {
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception e) {
         return defHandler("未知异常", e);
+    }
+
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(SaTokenException.class)
+    public Result handleException(SaTokenException e) {
+        return defHandler(e.getMessage(), e);
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NoResourceFoundException.class)
+    public Result handleException(NoResourceFoundException e) {
+        return defHandler(e.getMessage(), e);
     }
 
     /**

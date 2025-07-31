@@ -70,6 +70,12 @@
             <artifactId>spring-context-support</artifactId>
         </dependency>
 
+        <!-- SpringWeb模块 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+
         <!-- java HuTool 综合工具集 -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -92,11 +98,11 @@
         </dependency>
 
         <!-- Sa-Token 整合 Fastjson2 -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-fastjson2</artifactId>
-            <version>${sa-token.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>cn.dev33</groupId>-->
+<!--            <artifactId>sa-token-fastjson2</artifactId>-->
+<!--            <version>${sa-token.version}</version>-->
+<!--        </dependency>-->
 
         <!-- Sa-Token OAuth2.0 模块 -->
         <dependency>

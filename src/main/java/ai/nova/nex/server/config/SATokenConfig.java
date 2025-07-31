@@ -1,6 +1,7 @@
 package ai.nova.nex.server.config;
 
 import cn.dev33.satoken.spring.SaBeanInject;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.LazyInitializationExcludeFilter;
 import org.springframework.context.annotation.Bean;
@@ -19,4 +20,5 @@ public class SATokenConfig {
         log.info("SATokenConfig 装载");
         return LazyInitializationExcludeFilter.forBeanTypes(SaBeanInject.class);
     }
+
 }
