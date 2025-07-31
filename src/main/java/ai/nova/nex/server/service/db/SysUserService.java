@@ -10,4 +10,5 @@ import ai.nova.nex.server.dto.SysUserDTO;
  * @Description 请填写此类描述
  */
 public interface SysUserService extends SuperService<SysUserDTO> {
+    SysUserDTO getUserByUsername(String username);
 }

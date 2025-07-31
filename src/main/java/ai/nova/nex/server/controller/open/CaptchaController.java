@@ -46,6 +46,11 @@ public class CaptchaController {
     @Resource
     private ImageCaptchaApplication imageCaptchaApplication;
 
+
+    /*
+    * 生成通用验证码 TIANAI-CAPTCHA
+    * type: RANDOM 随机生成验证码
+    * */
     @RequestMapping("/generate_generic")
     @ResponseBody
     public CaptchaResponse<ImageCaptchaVO> genCaptcha(@RequestParam(value = "type", required = false)String type) {
@@ -57,6 +62,9 @@ public class CaptchaController {
         return imageCaptchaApplication.generateCaptcha(type);
     }
 
+    /*
+    * 验证码验证
+    * */
     @PostMapping("/check")
     @ResponseBody
     public ApiResponse<?> checkCaptcha(@RequestBody CaptchaController.Data data) {

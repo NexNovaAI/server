@@ -1,5 +1,6 @@
 package ai.nova.nex.server.service.business;
 
+import ai.nova.nex.server.dto.SysUserDTO;
 import ai.nova.nex.server.entity.model.RegisterUserModel;
 
 /**
@@ -10,4 +11,6 @@ import ai.nova.nex.server.entity.model.RegisterUserModel;
  */
 public interface AccountService {
     boolean register(RegisterUserModel registerUserModel);
+    boolean login(String username, String password);
+    boolean login(SysUserDTO sysUserDTO, String password);
 }
