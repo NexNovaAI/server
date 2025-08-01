@@ -23,3 +23,6 @@ NexNovaAI 是一个基于Spring Boot的快速AI应用开发框架，集成了SA-
 - JDK 17+
 - MySQL 8.0+
 - Redis 6.0+
+
+# ApiFox
+ - https://s.apifox.cn/5e28ee2e-14f6-4c63-99e2-c541395505e2
