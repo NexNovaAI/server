@@ -1,6 +1,8 @@
 package ai.nova.nex.server.service.business.i;
 
+import ai.nova.nex.server.dto.SysTemporaryPermissionsDTO;
 import ai.nova.nex.server.dto.SysUserDTO;
+import ai.nova.nex.server.dto.SysUserRoleDTO;
 import ai.nova.nex.server.entity.model.RegisterUserModel;
 import ai.nova.nex.server.enums.OTPStatusEnum;
 import ai.nova.nex.server.enums.UserStatusEnum;
@@ -8,15 +10,18 @@ import ai.nova.nex.server.exception.BusinessException;
 import ai.nova.nex.server.lock.DistributedLock;
 import ai.nova.nex.server.lock.ZLock;
 import ai.nova.nex.server.service.business.AccountService;
-import ai.nova.nex.server.service.db.SysUserService;
+import ai.nova.nex.server.service.db.*;
 import ai.nova.nex.server.service.system.SystemAESService;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -33,6 +38,14 @@ public class IAccountService implements AccountService {
     private SysUserService SysUserService;
     @Resource
     private SystemAESService SystemAESService;
+    @Resource
+    private SysUserRoleService SysUserRoleService;
+    @Resource
+    private SysPermissionsService SysPermissionsService;
+    @Resource
+    private SysTemporaryPermissionsService SysTemporaryPermissionsService;
+    @Resource
+    private SysRolePermissionService SysRolePermissionService;
 
     @Override
     public boolean register(RegisterUserModel registerUserModel) {
@@ -68,5 +81,25 @@ public class IAccountService implements AccountService {
     @Override
     public boolean login(SysUserDTO sysUserDTO, String password) {
         return !ObjectUtil.isNull(sysUserDTO) && SecureUtil.md5().digestHex(password).equals(sysUserDTO.getPassword());
+    }
+
+    @Override
+    public List<String> getUserRoleCodes(Long userId) {
+        return SysUserRoleService.getByUserId(userId).getRoleCodes();
+    }
+
+    @Override
+    public List<String> getUserPermissionCodes(Long userId) {
+        return SysRolePermissionService.getPermissionCodes(getUserRoleCodes(userId));
+    }
+
+    @Override
+    public List<String> getUserTemporaryPermissions(Long userId) {
+        List<SysTemporaryPermissionsDTO> sysTemporaryPermission = SysTemporaryPermissionsService.getByUserId(userId, true);
+        return sysTemporaryPermission.stream()
+                .map(SysTemporaryPermissionsDTO::getPermissionCodes)
+                .flatMap(List::stream)
+                .distinct()
+                .toList();
     }
 }

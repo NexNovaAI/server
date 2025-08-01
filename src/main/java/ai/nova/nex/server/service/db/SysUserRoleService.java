@@ -10,4 +10,6 @@ import ai.nova.nex.server.dto.SysUserRoleDTO;
  * @Description 请填写此类描述
  */
 public interface SysUserRoleService extends SuperService<SysUserRoleDTO> {
+    SysUserRoleDTO getByUserId(Long userId);
+    boolean deleteByUserId(Long userId);
 }

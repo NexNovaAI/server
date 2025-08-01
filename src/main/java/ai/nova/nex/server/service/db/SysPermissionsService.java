@@ -10,4 +10,6 @@ import ai.nova.nex.server.dto.SysPermissionsDTO;
  * @Description 请填写此类描述
  */
 public interface SysPermissionsService extends SuperService<SysPermissionsDTO> {
+    SysPermissionsDTO getByPermissionCode(String permissionCode);
+    boolean deleteByPermissionCode(String permissionCode);
 }

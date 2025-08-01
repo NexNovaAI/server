@@ -10,4 +10,6 @@ import ai.nova.nex.server.dto.SysRolesDTO;
  * @Description 请填写此类描述
  */
 public interface SysRolesService extends SuperService<SysRolesDTO> {
+    SysRolesDTO getByRoleCode(String roleCode);
+    boolean deleteByRoleCode(String roleCode);
 }
