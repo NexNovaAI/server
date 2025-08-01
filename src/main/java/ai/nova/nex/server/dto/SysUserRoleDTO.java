@@ -1,7 +1,9 @@
 package ai.nova.nex.server.dto;
 
 import ai.nova.nex.server.config.base.SuperEntity;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.Fastjson2TypeHandler;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -19,5 +21,6 @@ import java.util.List;
 @Accessors(chain = true)
 public class SysUserRoleDTO extends SuperEntity<SysUserRoleDTO> {
     public Long uid;
+    @TableField(typeHandler = Fastjson2TypeHandler.class)
     public List<String> roleCodes;
 }
