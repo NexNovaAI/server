@@ -1,5 +1,6 @@
 package ai.nova.nex.server.service.business.i;
 
+import ai.nova.nex.server.component.QRCodeGenerator;
 import ai.nova.nex.server.dto.SysTemporaryPermissionsDTO;
 import ai.nova.nex.server.dto.SysUserDTO;
 import ai.nova.nex.server.dto.SysUserRoleDTO;
@@ -11,6 +12,7 @@ import ai.nova.nex.server.lock.DistributedLock;
 import ai.nova.nex.server.lock.ZLock;
 import ai.nova.nex.server.service.business.AccountService;
 import ai.nova.nex.server.service.db.*;
+import ai.nova.nex.server.service.system.OTPService;
 import ai.nova.nex.server.service.system.SystemAESService;
 
 import cn.hutool.core.util.ObjectUtil;
@@ -47,9 +49,15 @@ public class IAccountService implements AccountService {
     @Resource
     private SysRolePermissionService SysRolePermissionService;
 
+    @Resource
+    private OTPService otpService;
+    @Resource
+    private QRCodeGenerator qrCodeGenerator;
+
+
     @Override
     public boolean register(RegisterUserModel registerUserModel) {
-        // todo 邮箱验证码效验
+        // TODO 邮箱验证码效验
 
         SysUserDTO sysUserDTO = SysUserService.getUserByUsername(registerUserModel.getUsername());
         if (ObjectUtil.isNotNull(sysUserDTO)) {
@@ -59,6 +67,7 @@ public class IAccountService implements AccountService {
         sysUserDTO.setUsername(registerUserModel.getUsername());
         sysUserDTO.setPassword(SecureUtil.md5().digestHex(registerUserModel.getPassword()));
         sysUserDTO.setMailbox(registerUserModel.getMailbox());
+        sysUserDTO.setOtpContent(otpService.generateSecretKey());
         sysUserDTO.setOtpStatus(OTPStatusEnum.NOT_ENABLED);
         sysUserDTO.setRegisterAddress(registerUserModel.getRegisterAddress());
         sysUserDTO.setUserStatus(UserStatusEnum.NORMAL);

@@ -1,9 +1,8 @@
-package ai.nova.nex.server.config;
+package ai.nova.nex.server.component;
 
 import ai.nova.nex.server.service.business.AccountService;
 import cn.dev33.satoken.stp.StpInterface;
 import jakarta.annotation.Resource;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

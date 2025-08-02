@@ -26,6 +26,8 @@
         <druid.version>1.2.27</druid.version>
         <mybatis-plus.version>3.5.12</mybatis-plus.version>
         <tianai-captcha.version>1.5.2</tianai-captcha.version>
+        <google-zxing.version>3.5.3</google-zxing.version>
+        <commons-codec.version>1.19.0</commons-codec.version>
     </properties>
 
     <dependencies>
@@ -97,12 +99,23 @@
             <version>${sa-token.version}</version>
         </dependency>
 
-        <!-- Sa-Token 整合 Fastjson2 -->
-<!--        <dependency>-->
-<!--            <groupId>cn.dev33</groupId>-->
-<!--            <artifactId>sa-token-fastjson2</artifactId>-->
-<!--            <version>${sa-token.version}</version>-->
-<!--        </dependency>-->
+
+        <!-- TOTP 二步验证 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>${google-zxing.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>${google-zxing.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+        </dependency>
 
         <!-- Sa-Token OAuth2.0 模块 -->
         <dependency>

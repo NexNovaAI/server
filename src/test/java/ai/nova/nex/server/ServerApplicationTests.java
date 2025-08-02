@@ -3,6 +3,7 @@ package ai.nova.nex.server;
 import ai.nova.nex.server.entity.model.RegisterUserModel;
 import ai.nova.nex.server.enums.UserStatusEnum;
 import ai.nova.nex.server.service.business.AccountService;
+import ai.nova.nex.server.service.system.OTPService;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import jakarta.annotation.Resource;
@@ -18,6 +19,8 @@ class ServerApplicationTests {
 
     @Resource
     private AccountService accountService;
+    @Resource
+    private OTPService otpService;
 
 
     /*
@@ -36,7 +39,7 @@ class ServerApplicationTests {
     @Test
     void register() {
         RegisterUserModel registerUserModel = new RegisterUserModel();
-        registerUserModel.setUsername("admin");
+        registerUserModel.setUsername("test");
         registerUserModel.setPassword("123456");
         registerUserModel.setMailbox("admin@nova.ai");
         registerUserModel.setRegisterAddress("127.0.0.1");
@@ -45,6 +48,9 @@ class ServerApplicationTests {
 
     @Test
     void contextLoads() {
+        String barCode = otpService.getGoogleAuthenticatorBarCode(
+                "VINL7BQKLYP2KCRR", "server@server.com", "NexNova");
+        log.info("barCode: {}", barCode);
     }
 
 }
